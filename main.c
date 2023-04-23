@@ -20,6 +20,8 @@ int main(void)
     printf("String:[%s]\n", "I am a string !");
     len = _printf("Percent:[%%]\n");
     len2 = printf("Percent:[%%]\n");
-	
+    _printf("Complete the sentence: You %s nothing, Jon Snow.\n", "know");
+	_printf("Complete the sentence: You %s nothing, Jon Snow.\n", (char *)0);
+
     return (0);
 }
