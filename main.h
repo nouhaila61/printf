@@ -22,5 +22,6 @@ int _printf(const char *format, ...);
 int _putchar(char c);
 int print_c(va_list c);
 int print_s(va_list s);
+int (*check_format(const char *format))(va_list);
 
 #endif
