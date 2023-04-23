@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <unistd.h>
-
+#include <stdlib.h>
 /**
  * struct print - structure for printing diffrent types
  * @t: type to print
