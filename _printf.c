@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * check_format - checks if there is a valid format specifier
+ * check_format - check if there is a valid format specifier
  * @format: possible valid format specifier
  * Return: pointer to valid function or NULL
  */
