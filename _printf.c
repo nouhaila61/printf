@@ -5,7 +5,7 @@
  * @arg: argument to print
  * @specifier: conversion specifier
  *
- * Return: the number of characters printed or -1 if an invalid conversion
+ * Return: number of characters printed or -1 if an invalid conversion
  *         specifier is provided
  */
 int print_arg(va_list arg, char specifier)
