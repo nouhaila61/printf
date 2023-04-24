@@ -13,7 +13,6 @@
 
 int t_print(const char *str, int i, va_list arg, int len, int tmpi)
 {
-	int n;
 
 	switch (str[i + 1])
 	{
@@ -26,10 +25,9 @@ int t_print(const char *str, int i, va_list arg, int len, int tmpi)
 		case '%':
 			len += _putchar('%');
 			break;
-			default:
+		default:
 			len += _putchar(str[tmpi]);
-			len += _putchar(str[tmpi + 1]);
-			len++;
+			i++;
 			break;
 	}
 
