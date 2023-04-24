@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <stddef.h>
 
 int _printf(const char *format, ...);
 int _puts(char *s);

@@ -8,40 +8,49 @@
  */
 int _printf(const char *format, ...)
 {
-	unsigned int i, len = 0;
-	va_list arg;
+    unsigned int i, len = 0;
+    va_list arg;
 
-	va_start(arg, format);
-	for (i = 0; format && format[i]; i++)
-	{
-		if (format[i] == '%' && format[i + 1])
-		{
-			switch (format[i + 1])
-			{
-				case 'c':
-					len += _putchar(va_arg(arg, int));
-					break;
-				case 's':
-					len += _puts(va_arg(arg, char *));
-					break;
-				case 'd':
-				case 'i':
-					len += _print_integer(va_arg(arg, int));
-					break;
-				case '%':
-					len += _putchar('%');
-					break;
-				default:
-					len += _putchar('%');
-					len += _putchar(format[i + 1]);
-					break;
-			}
-			i++;
-		}
-		else
-			len += _putchar(format[i]);
-	}
-	va_end(arg);
+    va_start(arg, format);
+    for (i = 0; format && format[i]; i++)
+    {
+        if (format[i] == '%')
+        {
+            i++;
+            while (format[i] == ' ')
+                i++;
 
-	return (len);
+            if (format[i] == '\0')
+                return (-1);
+
+            if (format[i] == '%')
+            {
+                len += _putchar('%');
+                continue;
+            }
+            else if (format[i] == 'c')
+                len += _putchar(va_arg(arg, int));
+            else if (format[i] == 's')
+            {
+                char *s = va_arg(arg, char *);
+
+                if (s == NULL)
+                    len += _puts("(null)");
+                else
+                    len += _puts(s);
+            }
+            else if (format[i] == 'd' || format[i] == 'i')
+                len += _print_integer(va_arg(arg, int));
+            else
+            {
+                len += _putchar('%');
+                len += _putchar(format[i]);
+            }
+        }
+        else
+            len += _putchar(format[i]);
+    }
+    va_end(arg);
+
+    return (len);
 }
