@@ -6,12 +6,13 @@
  * @i: current position in the format string
  * @arg: variable argument list
  * @len: current length of the output
+ * @tmpi: holds the value of i
+ *
  * Return: the updated length of the output
  */
 
-int t_print(const char *str, int i, va_list arg, int len)
+int t_print(const char *str, int i, va_list arg, int len, int tmpi)
 {
-	char *s;
 	int n;
 
 	switch (str[i + 1])
@@ -20,10 +21,7 @@ int t_print(const char *str, int i, va_list arg, int len)
 			len += _putchar(va_arg(arg, int));
 			break;
 		case 's':
-			s = va_arg(arg, char *);
-			if (s == NULL)
-				s = "(null)";
-			len += _putstring(s);
+			len += _putstring(va_arg(arg, char *));
 			break;
 		case 'd':
 		case 'i':
@@ -37,14 +35,14 @@ int t_print(const char *str, int i, va_list arg, int len)
 			len += convert_binary(va_arg(arg, int));
 			break;
 		default:
-			len += _putchar(str[i]);
-			len += _putchar(str[i + 1]);
+			len += _putchar(str[tmpi]);
+			_putchar(str[tmpi + 1]);
+			len++;
 			break;
 	}
 
 	return (len);
 }
-
 /**
  * _printf - produces output according to a format
  * @format: a string containing zero or more directives
@@ -53,8 +51,9 @@ int t_print(const char *str, int i, va_list arg, int len)
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, len = 0;
+	unsigned int i = 0, len = 0;
 	va_list arg;
+	int tmpi = 0;
 
 	if (format == NULL)
 		return (-1);
@@ -65,13 +64,13 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			len = t_print(format, i, arg, len);
-			i++;
+			tmpi = i;
+			while (format[++i] == ' ')
+				;
+			len = t_print(format, i - 1, arg, len, tmpi);
 		}
 		else
-			len += _putchar(format[i]);
-
-		i++;
+			len += _putchar(format[i++]);
 	}
 
 	va_end(arg);
