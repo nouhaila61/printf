@@ -8,18 +8,32 @@
  */
 int print_number(int n)
 {
-	int count = 0;
+	int i = 0;
 
-	if (n < 0)
+	if (n == -2147483648)
 	{
 		_putchar('-');
-		count++;
-		n = -n;
+		i++;
+		_putchar('2');
+		i++;
+		i += print_number(147483648);
 	}
-	if (n / 10 != 0)
-		count += print_number(n / 10);
-		_putchar(n % 10 + '0');
-	count++;
-
-	return (count);
-}
+	else if (n < 0)
+	{
+		_putchar('-');
+		i++;
+		n *= -1;
+		i += print_number(n);
+	}
+	else if (n > 9)
+	{
+		i += print_number(n / 10);
+		i += print_number(n % 10);
+	}
+	else if (n <= 9)
+	{
+		_putchar(n + 48);
+		i++;
+	}
+	return (i);
+	}
