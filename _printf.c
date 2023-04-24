@@ -24,11 +24,6 @@ int t_print(const char *str, int i, va_list arg, int len)
 				s = "(null)";
 			len += _putstring(s);
 			break;
-		case 'd':
-		case 'i':
-			n = va_arg(arg, int);
-			len += print_number(n);
-			break;
 		case '%':
 			len += _putchar('%');
 			break;
