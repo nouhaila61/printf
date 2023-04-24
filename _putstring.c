@@ -1,24 +1,17 @@
 #include "main.h"
 /**
- * _put_string - prints the giver characters
+ * _putstring - prints the giver characters
  *
  * @s: string to be printed
  * Return: length of printed characters
  */
-int _put_string(const char *s)
+int _putstring(char *s)
 {
-	int len;
+	int i;
 
-	len = 0;
 	if (!s)
-	{
-		write(1, "(null)", 6);
-		len = 6;
-	}
-	while (s && s[len])
-	{
-		_putchar(s[len]);
-		len++;
-	}
-	return (len);
+		s = "(null)";
+	for (i = 0; s[i] != '\0'; i++)
+		_putchar(s[i]);
+	return (i);
 }

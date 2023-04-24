@@ -6,20 +6,10 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-/**
- * struct print - structure for printing diffrent types
- * @t: type to print
- * @f: function to print
- */
-typedef struct print
-{
-	char *t;
-	int (*f)(va_list);
-
-} print_t;
 
 int _printf(const char *format, ...);
 int _putchar(char c);
-int _put_string(const char *s);
+int _putstring(char *s);
+int t_print(const char *str, int i, va_list arg, int len);
 
 #endif
