@@ -1,64 +1,49 @@
 #include "main.h"
 
 /**
- * print_char - prints a character to stdout
- * @arg: the variable argument list
+ * _print_integer - prints an integer to stdout
+ * @n: The integer to print
  *
- * Return: the number of characters printed
+ * Return: On success the number of digits printed.
+ * On error, -1 is returned, and errno is set appropriately.
  */
-int print_char(va_list arg)
+int _print_integer(int n)
 {
-	char c = va_arg(arg, int);
+	unsigned int m = (n < 0) ? -n : n;
+	int len = (n <= 0) ? 1 : 0;
 
-	return (_putchar(c));
+	if (n < 0)
+		len += _putchar('-');
+	if (m / 10)
+		len += _print_integer(m / 10);
+	len += _putchar((m % 10) + '0');
+
+	return (len);
 }
 
-/**
- * print_string - prints a string to stdout
- * @arg: the variable argument list
- *
- * Return: the number of characters printed
- */
-int print_string(va_list arg)
-{
-	char *str;
-	unsigned int i;
 
-	str = va_arg(arg, char *);
-	if (!str)
-	{
-		str = "(null)";
-	}
-	for (i = 0; str[i]; i++)
-	{
-		_putchar(str[i]);
-	}
-	return (i);
-}
 /**
  * _putchar - writes a character to stdout
- * @c: the character to write
+ * @c: the character to print
  *
- * Return: On success, 1. On error, -1 is returned, a
+ * Return: 1 on success, -1 on error
  */
-
 int _putchar(char c)
 {
-	return (write(1, &c, 1));
+    return (write(1, &c, 1));
 }
-
 /**
- * _putstring - writes a string to stdout
- * @s: the string to write
+ * _puts - writes a string to stdout
+ * @s: The string to print
  *
- * Return: the number of characters written
+ * Return: On success the length of the string.
+ * On error, -1 is returned, and errno is set appropriately.
  */
-
-int _putstring(const char *s)
+int _puts(char *s)
 {
-	int i;
+	int i, len = 0;
 
-	for (i = 0; s[i] != '\0'; i++)
-		_putchar(s[i]);
-	return (i);
+	for (i = 0; s[i]; i++)
+		len += _putchar(s[i]);
+	return (len);
 }

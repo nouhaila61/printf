@@ -7,11 +7,8 @@
 #include <stdlib.h>
 
 int _printf(const char *format, ...);
-int print_string(va_list arg);
-int print_char(va_list arg);
+int _puts(char *s);
+int _print_integer(int n);
 int _putchar(char c);
-int _putstring(const char *s);
-int print_arg(va_list arg, char specifier);
-const char *handle_space(const char *format);
 
 #endif
