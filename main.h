@@ -20,5 +20,6 @@ typedef struct print
 
 int _printf(const char *format, ...);
 int _putchar(char c);
+int _put_string(const char *s);
 
 #endif
