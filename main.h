@@ -10,7 +10,7 @@
 int print_number(int n);
 int _putchar(char c);
 int _putstring(char *s);
-int	t_print(const char *str, int i, va_list arg, int len, int tmpi);
+int t_print(const char *str, int i, va_list arg, int len);
 int _printf(const char *format, ...);
 int convert_binary(int num);
 void print_rev(int *store, int size);
