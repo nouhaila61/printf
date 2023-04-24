@@ -27,12 +27,13 @@ int t_print(const char *str, int i, va_list arg, int len, int tmpi)
 			break;
 		default:
 			len += _putchar(str[tmpi]);
-			i++;
+			len += _putchar(str[i]);
 			break;
 	}
 
 	return (len);
 }
+
 /**
  * _printf - produces output according to a format
  * @format: a string containing zero or more directives
@@ -44,6 +45,7 @@ int _printf(const char *format, ...)
 	unsigned int i = 0, len = 0;
 	va_list arg;
 	int tmpi = 0;
+	int result;
 
 	if (format == NULL)
 		return (-1);
@@ -57,7 +59,10 @@ int _printf(const char *format, ...)
 			tmpi = i;
 			while (format[++i] == ' ')
 				;
-			len = t_print(format, i - 1, arg, len, tmpi);
+			result = t_print(format, i - 1, arg, len, tmpi);
+			if (result == -1)
+				return (-1);
+			len = result;
 		}
 		else
 			len += _putchar(format[i++]);
