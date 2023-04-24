@@ -11,7 +11,7 @@
  * Return: the updated length of the output
  */
 
-int t_print(const char *str, int i, va_list arg, int len, int tmpi)
+int t_print(const char *str, int i, va_list arg, int len)
 {
 
 	switch (str[i + 1])
@@ -20,14 +20,19 @@ int t_print(const char *str, int i, va_list arg, int len, int tmpi)
 			len += _putchar(va_arg(arg, int));
 			break;
 		case 's':
-			len += _putstring(va_arg(arg, char *));
+		{
+			char *s = va_arg(arg, char *);
+			if (s == NULL)
+				s = "(null)";
+			len += _putstring(s);
 			break;
+		}
 		case '%':
 			len += _putchar('%');
 			break;
 		default:
-			len += _putchar(str[tmpi]);
 			len += _putchar(str[i]);
+			len += _putchar(str[i + 1]);
 			break;
 	}
 
@@ -44,7 +49,6 @@ int _printf(const char *format, ...)
 {
 	unsigned int i = 0, len = 0;
 	va_list arg;
-	int tmpi = 0;
 	int result;
 
 	if (format == NULL)
@@ -56,13 +60,11 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			tmpi = i;
-			while (format[++i] == ' ')
-				;
-			result = t_print(format, i - 1, arg, len, tmpi);
+			result = t_print(format, i, arg, len);
 			if (result == -1)
 				return (-1);
 			len = result;
+			i += 2;
 		}
 		else
 			len += _putchar(format[i++]);
