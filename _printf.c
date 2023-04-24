@@ -6,7 +6,6 @@
  * @i: current position in the format string
  * @arg: variable argument list
  * @len: current length of the output
- * @tmpi: holds th value of i
  * Return: the updated length of the output
  */
 
