@@ -1,6 +1,30 @@
 #include "main.h"
 
+/**
+ * print_char - prints a character to stdout
+ * @arg: the variable argument list
+ *
+ * Return: the number of characters printed
+ */
+int print_char(va_list arg)
+{
+	char c = va_arg(arg, int);
 
+	return (_putchar(c));
+}
+
+/**
+ * print_string - prints a string to stdout
+ * @arg: the variable argument list
+ *
+ * Return: the number of characters printed
+ */
+int print_string(va_list arg)
+{
+	char *s = va_arg(arg, char *);
+
+	return (_putstring(s));
+}
 /**
  * _putchar - writes a character to stdout
  * @c: the character to write

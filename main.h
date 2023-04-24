@@ -5,12 +5,13 @@
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include <limits.h>
 
-int print_number(int n);
+int _printf(const char *format, ...);
+int print_string(va_list arg);
+int print_char(va_list arg);
 int _putchar(char c);
 int _putstring(const char *s);
-int t_print(const char *str, int i, va_list arg, int len);
-int _printf(const char *format, ...);
+int print_arg(va_list arg, char specifier);
+const char *handle_space(const char *format);
 
 #endif

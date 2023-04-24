@@ -1,42 +1,40 @@
 #include "main.h"
 
 /**
- * t_print - prints a character or string based on the format specifier
- * @str: pointer to the format string
- * @i: current position in the format string
- * @arg: variable argument list
- * @len: current length of the output
- * @tmpi: holds the value of i
+ * print_arg - handles printing of argument based on conversion specifier
+ * @arg: argument to print
+ * @specifier: conversion specifier
  *
- * Return: the updated length of the output
+ * Return: the number of characters printed
  */
-
-int t_print(const char *str, int i, va_list arg, int len)
+int print_arg(va_list arg, char specifier)
 {
-
-	switch (str[i + 1])
+	switch (specifier)
 	{
 		case 'c':
-			len += _putchar(va_arg(arg, int));
-			break;
+			return (print_char(arg));
 		case 's':
-		{
-			char *s = va_arg(arg, char *);
-			if (s == NULL)
-				s = "(null)";
-			len += _putstring(s);
-			break;
-		}
+			return (print_string(arg));
 		case '%':
-			len += _putchar('%');
-			break;
+			return (_putchar('%'));
 		default:
-			len += _putchar(str[i]);
-			len += _putchar(str[i + 1]);
-			break;
+			return (_putchar('%') + _putchar(specifier));
 	}
+}
 
-	return (len);
+/**
+ * handle_space - handles skipping over white space in format string
+ * @format: pointer to format string
+ *
+ * Return: pointer to next non-white space character in format string
+ */
+const char *handle_space(const char *format)
+{
+	while (*format == ' ')
+	{
+		format++;
+	}
+	return (format);
 }
 
 /**
@@ -47,30 +45,26 @@ int t_print(const char *str, int i, va_list arg, int len)
  */
 int _printf(const char *format, ...)
 {
-	unsigned int i = 0, len = 0;
 	va_list arg;
-	int result;
-
-	if (format == NULL)
-		return (-1);
+	unsigned int len = 0;
 
 	va_start(arg, format);
-
-	while (format[i])
+	if (!format)
+		return (-1);
+	while (*format)
 	{
-		if (format[i] == '%')
+		if (*format == '%')
 		{
-			result = t_print(format, i, arg, len);
-			if (result == -1)
-				return (-1);
-			len = result;
-			i += 2;
+			format++;
+			format = handle_space(format);
+			len += print_arg(arg, *format);
 		}
 		else
-			len += _putchar(format[i++]);
+		{
+			len += _putchar(*format);
+		}
+		format++;
 	}
-
 	va_end(arg);
-
 	return (len);
 }
