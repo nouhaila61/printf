@@ -21,9 +21,19 @@ int print_char(va_list arg)
  */
 int print_string(va_list arg)
 {
-	char *s = va_arg(arg, char *);
+	char *str;
+	unsigned int i;
 
-	return (_putstring(s));
+	str = va_arg(arg, char *);
+	if (!str)
+	{
+		str = "(null)";
+	}
+	for (i = 0; str[i]; i++)
+	{
+		_putchar(str[i]);
+	}
+	return (i);
 }
 /**
  * _putchar - writes a character to stdout
