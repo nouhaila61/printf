@@ -26,8 +26,9 @@ int t_print(const char *str, int i, va_list arg, int len, int tmpi)
 		case '%':
 			len += _putchar('%');
 			break;
+			default:
 			len += _putchar(str[tmpi]);
-			_putchar(str[tmpi + 1]);
+			len += _putchar(str[tmpi + 1]);
 			len++;
 			break;
 	}
