@@ -23,18 +23,9 @@ int t_print(const char *str, int i, va_list arg, int len, int tmpi)
 		case 's':
 			len += _putstring(va_arg(arg, char *));
 			break;
-		case 'd':
-		case 'i':
-			n = va_arg(arg, int);
-			len += print_number(n);
-			break;
 		case '%':
 			len += _putchar('%');
 			break;
-		case 'b':
-			len += convert_binary(va_arg(arg, int));
-			break;
-		default:
 			len += _putchar(str[tmpi]);
 			_putchar(str[tmpi + 1]);
 			len++;
