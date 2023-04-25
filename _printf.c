@@ -60,11 +60,10 @@ int _printf(const char *format, ...)
 	va_list arg;
 
 	va_start(arg, format);
-
 	if (!format || (format[0] == '%' && !format[1]))
-        return (-1);
-    else if (format[0] == '%' && format[1] == ' ' && !format[2])
-        return (-1);
+		return (-1);
+	else if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
 	else if (format != NULL)
 	{
 		for (i = 0; format && format[i]; i++)
@@ -76,7 +75,6 @@ int _printf(const char *format, ...)
 					i++;
 				if (format[i] == '\0')
 					return (-1);
-
 				if (format[i] == '%')
 					len += print_percent();
 				else if (format[i] == 'c')
@@ -89,7 +87,7 @@ int _printf(const char *format, ...)
 				{
 					len += _putchar('%');
 					len += _putchar(format[i]);
-				}	
+				}
 			}
 
 			else
@@ -97,6 +95,5 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(arg);
-
 	return (len);
 }
