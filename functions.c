@@ -9,37 +9,18 @@
  */
 int _print_integer(int n)
 {
-	int cou = 0;
+	unsigned int m = (n < 0) ? -n : n;
+	int len = (n < 0) ? 1 : 0;
 
 	if (n < 0)
-	{
 		_putchar('-');
-		cou++;
-		n = -n;
-	}
+	if (m / 10)
+		len += _print_integer(m / 10);
+	len += _putchar((m % 10) + '0');
 
-	cou = cou + _print_unsigned_int(n);
-	return (n);
+	return (len);
 }
-/**
- * _print_unsigned_int - prints an integer to stdout
- * @n: The integer to print
- *
- * Return: On success the number of digits printed.
- * On error, -1 is returned, and errno is set appropriately.
- */
-int _print_unsigned_int(int n)
-{
-	int cou = 0;
 
-	if (n / 10)
-	{
-		cou = cou + _print_unsigned_int(n / 10);
-	}
-	_putchar((n % 10) + '0');
-	cou++;
-	return (cou);
-}
 /**
  * _putchar - writes a character to stdout
  * @c: the character to print
