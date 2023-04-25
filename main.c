@@ -5,6 +5,9 @@
 int main()
 {
 	int len_1 = 0, len_2 = 0;
+	int hh = 3;
+	int kk = 20230425;
+	int pp = kk - hh;
 
 	/* ===========> %c <=========== */
 	printf("----------------------\n");
@@ -111,6 +114,13 @@ int main()
 	printf("Negative:[%d]\n", -762534);
 	printf("Character:[%c]\n", 'H');
 	len_2 = printf("Percent:[%%]\n");
+
+
+	_printf("hi you %i\n", hh);
+	 _printf("hi you %d\n", hh);
+	  _printf("hi you %i\n", kk);
+	   _printf("hi you %d\n", kk);
+	   _printf("hi you %i\n", pp);
 
 
 	return (0);
