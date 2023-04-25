@@ -15,5 +15,7 @@ int print_char(va_list arg);
 int print_string(va_list arg);
 int print_integer(va_list arg);
 int print_percent(void);
+int print_binary(unsigned int n);
+int handle_directive(char specifier, va_list arg);
 
 #endif

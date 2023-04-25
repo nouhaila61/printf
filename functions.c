@@ -46,3 +46,30 @@ int _puts(char *s)
 		len += _putchar(s[i]);
 	return (len);
 }
+
+/**
+ * print_binary - prints a binary representation of an unsigned integer
+ * @n: the unsigned integer to print
+ *
+ * Return: the number of binary digits printed
+ */
+int print_binary(unsigned int n)
+{
+	int count = 0;
+
+	if (n > 1)
+		count += print_binary(n / 2);
+
+	count += _putchar('0' + (n % 2));
+	return (count);
+}
+/**
+ * print_char - prints a character to stdout
+ * @arg: the character to print
+ *
+ * Return: the number of characters printed
+ */
+int print_char(va_list arg)
+{
+	return (_putchar(va_arg(arg, int)));
+}
