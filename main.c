@@ -104,6 +104,14 @@ int main()
 	printf("\n");
 	printf("Expected length:    [%d]\n", len_1);
 	printf("Current length:     [%d]\n", len_2);
+	
+    len_1 = _printf("Let's try to printf a simple sentence.\n");
+    len_2 = printf("Let's try to printf a simple sentence.\n");
+	printf("Length:[%d, %i]\n", len_2, len_2);
+	printf("Negative:[%d]\n", -762534);
+	printf("Character:[%c]\n", 'H');
+	len_2 = printf("Percent:[%%]\n");
+
 
 	return (0);
 }

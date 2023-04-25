@@ -60,33 +60,41 @@ int _printf(const char *format, ...)
 	va_list arg;
 
 	va_start(arg, format);
-	for (i = 0; format && format[i]; i++)
+
+	if (!format || (format[0] == '%' && !format[1]))
+        return (-1);
+    else if (format[0] == '%' && format[1] == ' ' && !format[2])
+        return (-1);
+	else if (format != NULL)
 	{
-		if (format[i] == '%')
+		for (i = 0; format && format[i]; i++)
 		{
-			i++;
-			while (format[i] == ' ')
-				i++;
-
-			if (format[i] == '\0')
-				return (-1);
-
 			if (format[i] == '%')
-				len += print_percent();
-			else if (format[i] == 'c')
-				len += print_char(arg);
-			else if (format[i] == 's')
-				len += print_string(arg);
-			else if (format[i] == 'd' || format[i] == 'i')
-				len += print_integer(arg);
-			else
 			{
-				len += _putchar('%');
-				len += _putchar(format[i]);
+				i++;
+				while (format[i] == ' ')
+					i++;
+				if (format[i] == '\0')
+					return (-1);
+
+				if (format[i] == '%')
+					len += print_percent();
+				else if (format[i] == 'c')
+					len += print_char(arg);
+				else if (format[i] == 's')
+					len += print_string(arg);
+				else if (format[i] == 'd' || format[i] == 'i')
+					len += print_integer(arg);
+				else
+				{
+					len += _putchar('%');
+					len += _putchar(format[i]);
+				}	
 			}
+
+			else
+				len += _putchar(format[i]);
 		}
-		else
-			len += _putchar(format[i]);
 	}
 	va_end(arg);
 
